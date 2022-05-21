@@ -1,0 +1,140 @@
+Serverių specifikacijos
+-----------------------------------------------
+|Serverio pavadinimas         |Greitis(bps)   |
+-----------------------------------------------
+|Didysis                      |         100000|
+|Maziukas                     |            555|
+|Greitasis                    |          99999|
+|Matrix                       |          34343|
+|Ubisoft                      |          12345|
+-----------------------------------------------
+
+
+Serveriu veikla atskiromis dienomis
+2013-05-20 Maziukas
+--------------------------------------------------------------------------------------------------------------
+|Išsiuntimo laikas   |Siuntėjas                          |Gavėjas                            |Laiško dydis   |
+--------------------------------------------------------------------------------------------------------------
+|               16:54|Swata.verse@gmail.com              |gavejas1@ktu.edu                   |              5|
+|               20:22|siuntejas2@ktu.lt                  |gavejas2@ktu.edu                   |             11|
+|                3:54|siuntejas3@ktu.lt                  |gavejas3@ktu.edu                   |             54|
+|               23:59|siuntejas4@ktu.lt                  |gavejas4@ktu.edu                   |          10000|
+|               13:37|siuntejas5@ktu.lt                  |gavejas5@ktu.edu                   |              3|
+--------------------------------------------------------------------------------------------------------------
+
+1984-05-22 Ubisoft
+--------------------------------------------------------------------------------------------------------------
+|Išsiuntimo laikas   |Siuntėjas                          |Gavėjas                            |Laiško dydis   |
+--------------------------------------------------------------------------------------------------------------
+|                0:12|siuntejas1@ktu.lt                  |gavejas1@ktu.edu                   |          55555|
+|                1:22|siuntejas2@ktu.lt                  |gavejas2@ktu.edu                   |           1111|
+|                2:54|rayman.Legends@ybi.com             |gavejas3@ktu.edu                   |             54|
+|                3:59|siuntejas4@ktu.lt                  |gavejas4@ktu.edu                   |          10000|
+|                4:37|siuntejas5@ktu.lt                  |gavejas5@ktu.edu                   |          33994|
+|                5:54|siuntejas1@ktu.lt                  |gavejas1@ktu.edu                   |          55555|
+|                6:22|siuntejas2@ktu.lt                  |gavejas2@ktu.edu                   |           1111|
+|                6:54|rayman.Legends@ybi.com             |gavejas3@ktu.edu                   |             54|
+|                8:59|siuntejas4@ktu.lt                  |gavejas4@ktu.edu                   |          10000|
+|                9:37|siuntejas5@ktu.lt                  |gavejas5@ktu.edu                   |          33994|
+|               10:54|siuntejas1@ktu.lt                  |gavejas1@ktu.edu                   |          55555|
+|               11:22|siuntejas2@ktu.lt                  |gavejas2@ktu.edu                   |           1111|
+|               12:54|rayman.Legends@ybi.com             |gavejas3@ktu.edu                   |             54|
+|               13:59|siuntejas4@ktu.lt                  |gavejas4@ktu.edu                   |          10000|
+|               14:37|siuntejas5@ktu.lt                  |gavejas5@ktu.edu                   |          33994|
+|               15:54|siuntejas1@ktu.lt                  |gavejas1@ktu.edu                   |          55555|
+|               16:22|siuntejas2@ktu.lt                  |gavejas2@ktu.edu                   |           1111|
+|               17:54|rayman.Legends@ybi.com             |gavejas3@ktu.edu                   |             54|
+|               18:59|siuntejas4@ktu.lt                  |gavejas4@ktu.edu                   |          10000|
+|               19:37|siuntejas5@ktu.lt                  |gavejas5@ktu.edu                   |          33994|
+|               20:54|rayman.Legends@ybi.com             |gavejas3@ktu.edu                   |             54|
+|               21:59|siuntejas4@ktu.lt                  |gavejas4@ktu.edu                   |          10000|
+|               22:37|siuntejas5@ktu.lt                  |gavejas5@ktu.edu                   |          33994|
+|               23:54|siuntejas1@ktu.lt                  |gavejas1@ktu.edu                   |          55555|
+--------------------------------------------------------------------------------------------------------------
+
+2019-09-11 Matrix
+--------------------------------------------------------------------------------------------------------------
+|Išsiuntimo laikas   |Siuntėjas                          |Gavėjas                            |Laiško dydis   |
+--------------------------------------------------------------------------------------------------------------
+|                0:55|siuntejas1@ktu.lt                  |gavejas1@ktu.edu                   |          55555|
+|                1:12|siuntejas2@ktu.lt                  |gavejas2@ktu.edu                   |           1111|
+|                2:36|rayman.Legends@ybi.com             |gavejas3@ktu.edu                   |             54|
+|                3:59|siuntejas4@ktu.lt                  |gavejas4@ktu.edu                   |          10000|
+|                4:37|siuntejas5@ktu.lt                  |gavejas5@ktu.edu                   |          33994|
+|                5:54|siuntejas1@ktu.lt                  |gavejas1@ktu.edu                   |          55555|
+|                6:22|siuntejas2@ktu.lt                  |gavejas2@ktu.edu                   |           1111|
+|                6:54|rayman.Legends@ybi.com             |gavejas3@ktu.edu                   |             54|
+|                8:59|siuntejas4@ktu.lt                  |gavejas4@ktu.edu                   |          10000|
+|                9:37|siuntejas5@ktu.lt                  |gavejas5@ktu.edu                   |          33994|
+|               10:54|siuntejas1@ktu.lt                  |gavejas1@ktu.edu                   |          55555|
+|               13:59|siuntejas4@ktu.lt                  |gavejas4@ktu.edu                   |          10000|
+|               14:37|siuntejas5@ktu.lt                  |gavejas5@ktu.edu                   |          33994|
+|               15:54|siuntejas1@ktu.lt                  |gavejas1@ktu.edu                   |          55555|
+|               16:22|siuntejas2@ktu.lt                  |gavejas2@ktu.edu                   |           1111|
+|               17:54|rayman.Legends@ybi.com             |gavejas3@ktu.edu                   |             54|
+|               18:59|siuntejas4@ktu.lt                  |gavejas4@ktu.edu                   |          10000|
+|               19:37|siuntejas5@ktu.lt                  |gavejas5@ktu.edu                   |          33994|
+|               20:54|rayman.Legends@ybi.com             |gavejas3@ktu.edu                   |             54|
+|               21:59|siuntejas4@ktu.lt                  |gavejas4@ktu.edu                   |          10000|
+|               22:37|siuntejas5@ktu.lt                  |gavejas5@ktu.edu                   |          33994|
+|               23:54|siuntejas1@ktu.lt                  |gavejas1@ktu.edu                   |          55555|
+--------------------------------------------------------------------------------------------------------------
+
+2032-12-25 Didysis
+--------------------------------------------------------------------------------------------------------------
+|Išsiuntimo laikas   |Siuntėjas                          |Gavėjas                            |Laiško dydis   |
+--------------------------------------------------------------------------------------------------------------
+|               16:54|Domas.stripeikis@gmail.com         |gavejas1@ktu.edu                   |              5|
+|               20:22|siuntejas2@ktu.lt                  |gavejas2@ktu.edu                   |             11|
+|                3:54|siuntejas3@ktu.lt                  |gavejas3@ktu.edu                   |             54|
+|               23:59|siuntejas4@ktu.lt                  |gavejas4@ktu.edu                   |          10000|
+|               13:37|siuntejas5@ktu.lt                  |gavejas5@ktu.edu                   |              3|
+--------------------------------------------------------------------------------------------------------------
+
+Valandos kuriomis serveriai nebuvo naudojami
+-------------------------------------------------
+|Serverio pavadinimas|Data           |Valanda   |
+-------------------------------------------------
+|             Didysis|          12-25|         0|
+|             Didysis|          12-25|         1|
+|             Didysis|          12-25|         2|
+|             Didysis|          12-25|         4|
+|             Didysis|          12-25|         5|
+|             Didysis|          12-25|         6|
+|             Didysis|          12-25|         7|
+|             Didysis|          12-25|         8|
+|             Didysis|          12-25|         9|
+|             Didysis|          12-25|        10|
+|             Didysis|          12-25|        11|
+|             Didysis|          12-25|        12|
+|             Didysis|          12-25|        14|
+|             Didysis|          12-25|        15|
+|             Didysis|          12-25|        17|
+|             Didysis|          12-25|        18|
+|             Didysis|          12-25|        19|
+|             Didysis|          12-25|        21|
+|             Didysis|          12-25|        22|
+|              Matrix|          09-11|         7|
+|              Matrix|          09-11|        11|
+|              Matrix|          09-11|        12|
+|            Maziukas|          05-20|         0|
+|            Maziukas|          05-20|         1|
+|            Maziukas|          05-20|         2|
+|            Maziukas|          05-20|         4|
+|            Maziukas|          05-20|         5|
+|            Maziukas|          05-20|         6|
+|            Maziukas|          05-20|         7|
+|            Maziukas|          05-20|         8|
+|            Maziukas|          05-20|         9|
+|            Maziukas|          05-20|        10|
+|            Maziukas|          05-20|        11|
+|            Maziukas|          05-20|        12|
+|            Maziukas|          05-20|        14|
+|            Maziukas|          05-20|        15|
+|            Maziukas|          05-20|        17|
+|            Maziukas|          05-20|        18|
+|            Maziukas|          05-20|        19|
+|            Maziukas|          05-20|        21|
+|            Maziukas|          05-20|        22|
+|             Ubisoft|          05-22|         7|
+-------------------------------------------------

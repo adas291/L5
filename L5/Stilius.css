@@ -8,3 +8,18 @@ table {
     background-color: #FFFFCC;
     margin: 10px;
 }
+
+.labelStyle {
+    color: darkolivegreen;
+    font: bolder;
+    font-size: large;
+}
+.HeaderRow {
+    background-color: darkolivegreen;
+    color: yellow;
+}
+.ErrorTable{
+    color:red;
+    background-color: white;
+    border: hidden;
+}

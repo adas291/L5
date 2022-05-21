@@ -1,0 +1,6 @@
+﻿2013; 05; 20; Maziukas
+16; 54; Swata.verse@gmail.com; gavejas1@ktu.edu; 5
+20; 22; siuntejas2@ktu.lt; gavejas2@ktu.edu; 11
+03; 54; siuntejas3@ktu.lt; gavejas3@ktu.edu; 54
+23; 59; siuntejas4@ktu.lt; gavejas4@ktu.edu; 10000
+13; 37; siuntejas5@ktu.lt; gavejas5@ktu.edu; 3

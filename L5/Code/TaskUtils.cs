@@ -38,24 +38,24 @@ namespace L5.Code
             {
                 return serversSpecs.FirstOrDefault(s => s.Name == Servername).InterfaceSpeed;
             }
-            catch(NullReferenceException ex)
+            catch(NullReferenceException )
             {
                 throw new Exception("Nera tokio serverio sarase");
             }
             
         }
 
-        public static List<Tuple<string, DateTime>> FindIdleHours(List<Server> servers)
+        public static List<Tuple<string, DateTime, int>> FindIdleHours(List<Server> servers)
         {
-            List<Tuple<string, DateTime>> set = new List<Tuple<string, DateTime>>();
+            List<Tuple<string, DateTime, int>> set = new List<Tuple<string, DateTime, int>>();
 
             foreach (var item in servers)
             {
                 for (int i = 0; i < 24; i++)
                 {
-                    if (BytesTransferedInHour(item, hour) == 0)
+                    if (BytesTransferedInHour(item, i) == 0)
                     {
-                        Tuple<string, DateTime> temp = Tuple.Create(item.Name, item.TransferDate);
+                        Tuple<string, DateTime, int> temp = Tuple.Create(item.Name, item.TransferDate, i);
                         set.Add(temp);
                     }
                 }

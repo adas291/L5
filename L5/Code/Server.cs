@@ -31,7 +31,7 @@ namespace L5.Code
         }
         public override string ToString()
         {
-            return $"{Name}";
+            return $"|{Name, -29}|{InterfaceSpeed, 15}|";
         }
     }
 }

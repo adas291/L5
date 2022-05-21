@@ -12,7 +12,7 @@ namespace L5
     public partial class Forma1 : System.Web.UI.Page
     {
         
-        const string CFR1 = @"~/App_Data/Rezultatai.txt";
+        const string CFR1 = @"Rezultatas.txt";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -44,19 +44,25 @@ namespace L5
 
             List<Server> Servers = InOut.ReadServerInfo("Spec.txt", directory);
 
-            InOut.DrawSpecificationsTable(Servers, form1);
+
 
             List<Server> EmailData = InOut.ReadEmailData(directory, Servers, "Spec.txt");
 
+
+            InOut.InputDataToTxt(Servers, EmailData, directory.FullName+ @"/Rezultatas.txt");
+
+            InOut.DrawSpecificationsTable(Servers, form1);
             InOut.DisplayServerData(EmailData, form1);
 
 
-
             TaskUtils.AssignDuration(EmailData, Servers);
-            InOut.DisplayServerData(EmailData, form1, true);
 
-            InOut.PrintIdleHours(TaskUtils.FindIdleHours(EmailData), form1);
+            var idleInfo = TaskUtils.FindIdleHours(EmailData).OrderBy(s => s.Item1).ThenByDescending(s => s.Item2).ToList();
 
+
+
+            InOut.PrintIdleHours(idleInfo, form1);
+            InOut.PrintResultsToTxt(idleInfo, directory.FullName + @"/Rezultatas.txt");
         }
     }
 }
