@@ -1,0 +1,5 @@
+﻿Didysis; 100000
+Maziukas; 555
+Greitasis; 99999
+Matrix; 34343
+Ubisoft; 12345

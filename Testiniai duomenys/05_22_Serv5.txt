@@ -1,0 +1,25 @@
+﻿1984; 05; 20; Ubisoft
+0; 12; siuntejas1@ktu.lt; gavejas1@ktu.edu; 55555
+1; 22; siuntejas2@ktu.lt; gavejas2@ktu.edu; 1111
+2; 54; rayman.Legends@ybi.com; gavejas3@ktu.edu; 54
+3; 59; siuntejas4@ktu.lt; gavejas4@ktu.edu; 10000
+4; 37; siuntejas5@ktu.lt; gavejas5@ktu.edu; 33994
+5; 54; siuntejas1@ktu.lt; gavejas1@ktu.edu; 55555
+6; 22; siuntejas2@ktu.lt; gavejas2@ktu.edu; 1111
+6; 54; rayman.Legends@ybi.com; gavejas3@ktu.edu; 54
+8; 59; siuntejas4@ktu.lt; gavejas4@ktu.edu; 10000
+9; 37; siuntejas5@ktu.lt; gavejas5@ktu.edu; 33994
+10; 54; siuntejas1@ktu.lt; gavejas1@ktu.edu; 55555
+11; 22; siuntejas2@ktu.lt; gavejas2@ktu.edu; 1111
+12; 54; rayman.Legends@ybi.com; gavejas3@ktu.edu; 54
+13; 59; siuntejas4@ktu.lt; gavejas4@ktu.edu; 10000
+14; 37; siuntejas5@ktu.lt; gavejas5@ktu.edu; 33994
+15; 54; siuntejas1@ktu.lt; gavejas1@ktu.edu; 55555
+16; 22; siuntejas2@ktu.lt; gavejas2@ktu.edu; 1111
+17; 54; rayman.Legends@ybi.com; gavejas3@ktu.edu; 54
+18; 59; siuntejas4@ktu.lt; gavejas4@ktu.edu; 10000
+19; 37; siuntejas5@ktu.lt; gavejas5@ktu.edu; 33994
+20; 54; rayman.Legends@ybi.com; gavejas3@ktu.edu; 54
+21; 59; siuntejas4@ktu.lt; gavejas4@ktu.edu; 10000
+22; 37; siuntejas5@ktu.lt; gavejas5@ktu.edu; 33994
+23; 54; siuntejas1@ktu.lt; gavejas1@ktu.edu; 55555

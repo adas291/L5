@@ -10,13 +10,16 @@ namespace L5.Code
         public string SenderAddress { get; set; }
         public string ReceiverAddress { get; set; }
         public int SizeInBytes { get; set; }
+        public string TargeServer { get; set; }
         public DateTime SendTime { get; set; }
+        public int TransferDuration { get; set; }
 
-        public Email(string senderAddress, string receiverAddress, int sizeInBytes, DateTime sendTime)
+        public Email(string senderAddress, string receiverAddress, int sizeInBytes, string targeServer, DateTime sendTime)
         {
             SenderAddress = senderAddress;
             ReceiverAddress = receiverAddress;
             SizeInBytes = sizeInBytes;
+            TargeServer = targeServer;
             SendTime = sendTime;
         }
 
@@ -25,5 +28,9 @@ namespace L5.Code
             return base.ToString();
         }
 
+        public DateTime ReceiveTime()
+        {
+            return SendTime.AddMinutes(TransferDuration);
+        }
     }
 }

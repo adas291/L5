@@ -12,7 +12,7 @@
         <div>
             <asp:Label ID="Label1" runat="server" Text="Pasirinkite failus su su pasto istorija ir serveriu specifikacijomis"></asp:Label>
             <br />
-            <asp:FileUpload ID="FileUpload1" runat="server" />
+            <asp:FileUpload ID="FileUpload1" runat="server" AllowMultiple="True" />
             <br />
             <br />
             <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />

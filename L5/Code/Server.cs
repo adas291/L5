@@ -10,6 +10,7 @@ namespace L5.Code
         public string Name { get; set; }
         public double InterfaceSpeed { get; set; }
         public List<Email> EmailTraffic { get; set; }
+        public DateTime TransferDate { get; set; }
 
         public Server(string name, double interfaceSpeed)
         {
@@ -17,9 +18,20 @@ namespace L5.Code
             InterfaceSpeed = interfaceSpeed;
         }
 
+        public Server(string name, List<Email> emailTraffic, DateTime transferDate)
+        {
+            Name = name;
+            EmailTraffic = emailTraffic;
+            TransferDate = transferDate;
+        }
+
         public void AddEmail(Email email)
         {
             EmailTraffic.Add(email);
+        }
+        public override string ToString()
+        {
+            return $"{Name}";
         }
     }
 }
