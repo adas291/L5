@@ -1,4 +1,4 @@
-﻿1984; 05; 20; Ubisoft
+﻿1984; 05; 22; Ubisoft
 0; 12; siuntejas1@ktu.lt; gavejas1@ktu.edu; 55555
 1; 22; siuntejas2@ktu.lt; gavejas2@ktu.edu; 1111
 2; 54; rayman.Legends@ybi.com; gavejas3@ktu.edu; 54
