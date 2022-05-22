@@ -16,7 +16,7 @@ table {
 }
 .HeaderRow {
     background-color: darkolivegreen;
-    color: yellow;
+    color: white;
 }
 .ErrorTable{
     color:red;
@@ -25,6 +25,7 @@ table {
 }
 .ButtonStyle{
     background-color:darkolivegreen;
-    color:yellow;
-    
+    color:white;
+    border-radius: 5px;
+    padding:0.5rem;
 }

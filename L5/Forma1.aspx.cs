@@ -13,41 +13,18 @@ namespace L5
     {
         
         const string CFR1 = @"Rezultatas.txt";
-        public static bool flag = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if(!flag)
-            //{
-            //    Session["Directory"] = null;
-            //    Session["ServerSpec"] = null;
-            //    Session["Idle"] = null;
-            //}
-            //List<Server> servers;
-            //List<Server> emails;
-            //List<Tuple<string, DateTime, int>> idle;
-
-            //if (Session["Directory"] != null)
-            //{
-            //}
-            //if (Session["ServerSpec"] != null)
-            //{
-            //    servers = (List<Server>)Session["ServerSpec"];
-            //    InOut.DrawSpecificationsTable(servers, form1);
-
-            //}
-            //if (Session["EmailData"] != null)
-            //{
-            //    emails = (List<Server>)Session["EmailData"];
-            //    InOut.DisplayServerData(emails, form1);
-            //}
-            //if (Session["Idle"] != null)
-            //{
-            //    idle = (List<Tuple<string, DateTime, int>>)Session["Idle"];
-            //    InOut.PrintIdleHours(idle, form1);
-            //}
+            Label2.Visible = false;
+            Label3.Visible = false;
         }
 
+        /// <summary>
+        /// Reads information and displays results on screen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Button1_Click(object sender, EventArgs e)
         {
             try
@@ -88,7 +65,6 @@ namespace L5
             }
 
             List<string> Errors = new List<string>();
-
             EmailData = InOut.ReadEmailData(directory, "Spec.txt", Errors, Servers);
             Session["EmailData"] = EmailData;
 
@@ -97,25 +73,29 @@ namespace L5
                 InOut.FillTable(Errors, Table1);
             }
 
-
-
             InOut.DrawSpecificationsTable(Servers, form1);
             InOut.DisplayServerData(EmailData, form1);
 
 
             TaskUtils.AssignDuration(EmailData, Servers, Table1);
 
-            var idleInfo = TaskUtils.FindIdleHours(EmailData).OrderBy(s => s.Item1).ThenByDescending(s => s.Item2).ToList();
+            var idleInfo = TaskUtils.FindIdleHours(EmailData).OrderBy(s => s.Item1)
+                                                             .ThenBy(s => s.Item2)
+                                                             .ToList();
             Session["Idle"] = idleInfo;
-
 
 
             InOut.PrintIdleHours(idleInfo, form1);
 
             Button2.Visible = true;
-            flag = true;
+
         }
 
+        /// <summary>
+        /// Outputs results to text file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Button2_Click(object sender, EventArgs e)
         {
 
@@ -127,6 +107,9 @@ namespace L5
                 DirectoryInfo directory = (DirectoryInfo)Session["Directory"];
                 InOut.InputDataToTxt(serverInfo, emails, directory.FullName + @"/Rezultatas.txt");
                 InOut.PrintResultsToTxt(Idle, directory.FullName + CFR1);
+                Label3.Text = $"Rezultatai sėkmingai išsaugoti {@"Rezultatas.txt"}.";
+                Label3.Visible = true;
+                Label3.ForeColor = System.Drawing.Color.Green;
             }
             catch (Exception ex)
             {
@@ -135,8 +118,7 @@ namespace L5
                 Label3.Visible = true;
                 return;
             }
-            Label3.Text = $"Rezultatai sėkmingai išsaugoti {@"Rezultatas.txt"}.";
-            Label3.Visible = true;
+            
         }
     }
 }

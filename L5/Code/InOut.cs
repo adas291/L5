@@ -6,8 +6,17 @@ using System.Web.UI.WebControls;
 
 namespace L5.Code
 {
+    /// <summary>
+    /// Class for input and output of information
+    /// </summary>
     public class InOut
     {
+        /// <summary>
+        /// Saves files from fileupload to server
+        /// </summary>
+        /// <param name="directory">Diretory to save</param>
+        /// <param name="fileUpload">File upload object</param>
+        /// <param name="table">error table</param>
         public static void SaveFilesToDirectory(DirectoryInfo directory, FileUpload fileUpload, Table table)
         {
             List<string> errors = new List<string>();
@@ -35,6 +44,13 @@ namespace L5.Code
                 InOut.FillTable(errors, table);
             }
         }
+        /// <summary>
+        /// Reads information about server's specifications
+        /// </summary>
+        /// <param name="fileName">Specific file name</param>
+        /// <param name="directory">Directory to read</param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public static List<Server> ReadServerInfo(string fileName, DirectoryInfo directory)
         {
             if (File.Exists(directory.FullName + fileName))
@@ -50,7 +66,8 @@ namespace L5.Code
                             string line;
                             while ((line = sr.ReadLine()) != null)
                             {
-                                string[] parts = line.Split(new string[] { "; " }, StringSplitOptions.RemoveEmptyEntries);
+                                string[] parts = line.Split(new string[] { "; " },
+                                                            StringSplitOptions.RemoveEmptyEntries);
                                 string name = parts[0];
                                 double speed = Convert.ToDouble(parts[1]);
                                 Server server = new Server(name, speed);
@@ -66,9 +83,17 @@ namespace L5.Code
             {
                 throw new Exception($"There is no file named {fileName} ");
             }
-
         }
-        public static List<Server> ReadEmailData(DirectoryInfo directory, string specFile, List<string> errors, List<Server> ServerSpecs)
+        /// <summary>
+        /// Reads information from saved files about emails
+        /// </summary>
+        /// <param name="directory"></param>
+        /// <param name="specFile"></param>
+        /// <param name="errors"></param>
+        /// <param name="ServerSpecs"></param>
+        /// <returns></returns>
+        public static List<Server> ReadEmailData(DirectoryInfo directory, string specFile, 
+                                            List<string> errors, List<Server> ServerSpecs)
         {
             List<Server> serverList = new List<Server>();
             foreach (var file in directory.GetFiles())
@@ -80,7 +105,8 @@ namespace L5.Code
                         using (StreamReader sr = new StreamReader(file.FullName))
                         {
 
-                            string[] firstLine = sr.ReadLine().Split(new string[] { "; " }, StringSplitOptions.RemoveEmptyEntries);
+                            string[] firstLine = sr.ReadLine().Split(new string[] { "; " },
+                                                            StringSplitOptions.RemoveEmptyEntries);
                             int year = Convert.ToInt32(firstLine[0]);
                             int month = Convert.ToInt32(firstLine[1]);
                             int day = Convert.ToInt32(firstLine[2]);
@@ -95,13 +121,14 @@ namespace L5.Code
                             }
 
 
-                                DateTime date = new DateTime(year, month, day);
+                            DateTime date = new DateTime(year, month, day);
                             string line;
 
                             List<Email> emails = new List<Email>();
                             while ((line = sr.ReadLine()) != null)
                             {
-                                string[] parts = line.Split(new string[] { "; " }, StringSplitOptions.RemoveEmptyEntries);
+                                string[] parts = line.Split(new string[] { "; " }, 
+                                                    StringSplitOptions.RemoveEmptyEntries);
                                 int hour = Convert.ToInt32(parts[0]);
                                 int min = Convert.ToInt32(parts[1]);
                                 string senderAddress = parts[2];
@@ -110,7 +137,8 @@ namespace L5.Code
                                 DateTime emailDate = new DateTime(year, month, day, hour, min, 1);
 
 
-                                Email email = new Email(senderAddress, receiverAddress, emailSize, serverName, emailDate);
+                                Email email = new Email(senderAddress, receiverAddress, 
+                                                                    emailSize, serverName, emailDate);
                                 emails.Add(email);
                             }
                             Server temp = new Server(serverName, emails, date);
@@ -126,7 +154,11 @@ namespace L5.Code
             }
             return serverList;           
         }
-
+        /// <summary>
+        /// Fills error table
+        /// </summary>
+        /// <param name="errors">Error list</param>
+        /// <param name="table">Table object</param>
         public static void FillTable(List<string> errors, Table table)
         {
             foreach (var item in errors)
@@ -140,8 +172,13 @@ namespace L5.Code
             }
         }
        
-
-        public static void DisplayServerData(List<Server> servers, System.Web.UI.HtmlControls.HtmlForm forma1)
+        /// <summary>
+        /// Displays information about server data
+        /// </summary>
+        /// <param name="servers">List of all servers</param>
+        /// <param name="forma1">Form object</param>
+        public static void DisplayServerData(List<Server> servers, 
+                            System.Web.UI.HtmlControls.HtmlForm forma1)
         {
             if (servers.Count > 0)
             {
@@ -199,12 +236,16 @@ namespace L5.Code
 
                     }
                     forma1.Controls.Add(table);
-
                 }
             }
-
         }
-        public static void DrawSpecificationsTable(List<Server> servers, System.Web.UI.HtmlControls.HtmlForm forma1)
+        /// <summary>
+        /// Draws server's specification's table
+        /// </summary>
+        /// <param name="servers">All server's specifications list</param>
+        /// <param name="forma1">Form object</param>
+        public static void DrawSpecificationsTable(List<Server> servers,
+                                            System.Web.UI.HtmlControls.HtmlForm forma1)
         {
             if (servers.Count > 0)
             {
@@ -239,73 +280,9 @@ namespace L5.Code
                 }
                 forma1.Controls.Add(table);
             }
-        }
-        //public static void DisplayServerData(List<Server> servers, System.Web.UI.HtmlControls.HtmlForm forma1, bool check)
-        //{
-        //    if (servers.Count > 0)
-        //    {
-        //        foreach (var server in servers)
-        //        {
-
-
-        //            Label label = new Label();
-        //            label.Text = server.ToString();
-
-        //            TableCell sender = new TableCell();
-        //            TableCell receiver = new TableCell();
-        //            TableCell targetServer = new TableCell();
-        //            TableCell Date = new TableCell();
-        //            TableCell duration = new TableCell();
-
-        //            sender.Text = "Siuntėjas";
-        //            receiver.Text = "Gavėjas";
-        //            targetServer.Text = "Serveris į kurį siunčiama";
-        //            duration.Text = "Trukemė (s)";
-
-        //            Date.Text = "Data";
-
-        //            TableRow row = new TableRow();
-        //            row.Cells.Add(sender);
-        //            row.Cells.Add(receiver);
-        //            row.Cells.Add(targetServer);
-        //            row.Cells.Add(Date);
-        //            row.Cells.Add(duration);
-
-        //            row.BackColor = System.Drawing.Color.DarkOliveGreen;
-        //            row.ForeColor = System.Drawing.Color.Yellow;
-
-        //            Table table = new Table();
-        //            table.Rows.Add(row);
-
-        //            foreach (var email in server.EmailTraffic)
-        //            {
-        //                sender = new TableCell();
-        //                receiver = new TableCell();
-        //                targetServer = new TableCell();
-        //                Date = new TableCell();
-        //                duration = new TableCell();
-
-        //                sender.Text = email.SenderAddress;
-        //                receiver.Text = email.ReceiverAddress;
-        //                targetServer.Text = email.TargeServer;
-        //                Date.Text = email.SendTime.ToString("H");
-        //                duration.Text = email.TransferDuration.ToString();
-
-        //                row = new TableRow();
-        //                row.Cells.Add(sender);
-        //                row.Cells.Add(receiver);
-        //                row.Cells.Add(targetServer);
-        //                row.Cells.Add(Date);
-        //                row.Cells.Add(duration);
-
-        //                table.Rows.Add(row);
-
-        //            }
-        //            forma1.Controls.Add(table);
-        //        }
-        //    }
-        
-        public static void PrintIdleHours(List<Tuple<string, DateTime, int>> servers, System.Web.UI.HtmlControls.HtmlForm forma1)
+        }        
+        public static void PrintIdleHours(List<Tuple<string, DateTime, int>> servers,
+                                            System.Web.UI.HtmlControls.HtmlForm forma1)
         {
             if(servers.Count > 0)
             {
@@ -345,7 +322,6 @@ namespace L5.Code
                     row.Cells.Add(Server);
                     row.Cells.Add(Date);
                     row.Cells.Add(Hour);
-
                     table.Rows.Add(row);
                 }
                 forma1.Controls.Add(label);
@@ -379,18 +355,32 @@ namespace L5.Code
                         {
                             sr.WriteLine($"{server.TransferDate.ToString("yyyy-MM-dd")} {server.Name}");
                             sr.WriteLine(longLine2);
-                            sr.WriteLine($"|{"Išsiuntimo laikas",-20}|{"Siuntėjas",-35}|{"Gavėjas",-35}|{"Laiško dydis",-15}|");
+                            sr.WriteLine($"|{"Išsiuntimo laikas",-20}|{"Siuntėjas",-35}" +
+                                         $"|{"Gavėjas",-35}|{"Laiško dydis",-15}|");
+
                             sr.WriteLine(longLine2);
                             foreach (var email in server.EmailTraffic)
                             {
-                                sr.WriteLine($"|{email.SendTime.ToString("H:m"), 20}|{email.SenderAddress, -35}|{email.ReceiverAddress, -35}|{email.SizeInBytes, 15}|");
+                                sr.WriteLine($"|{email.SendTime.ToString("H:m"), 20}" +
+                                             $"|{email.SenderAddress, -35}" +
+                                             $"|{email.ReceiverAddress, -35}|{email.SizeInBytes, 15}|");
                             }
                             sr.WriteLine(longLine2 + "\n");
                         }
                     }
                 }
             }
+            else
+            {
+                throw new Exception("There is no input data");
+            }
+            
         }
+        /// <summary>
+        /// Prints result to text file
+        /// </summary>
+        /// <param name="list">List of results</param>
+        /// <param name="path">path to print data</param>
         public static void PrintResultsToTxt(List<Tuple<string, DateTime, int>> list, string path)
         {
             if(list.Count> 0)
@@ -404,10 +394,15 @@ namespace L5.Code
                     sw.WriteLine(longLine);
                     foreach (var item in list)
                     {
-                        sw.WriteLine($"|{item.Item1,20}|{item.Item2.ToString("MM-dd"),15}|{item.Item3,10}|");
+                        sw.WriteLine($"|{item.Item1,20}|{item.Item2.ToString("MM-dd"),15}" +
+                                     $"|{item.Item3,10}|");
                     }
                     sw.WriteLine(longLine);
                 }
+            }
+            else
+            {
+                throw new Exception("Nėra rezultatų");
             }
         }
     }

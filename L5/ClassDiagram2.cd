@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="L5.Code.Email">
+    <Position X="4.25" Y="3.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAQAAAAAAAAEgAAAQAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Code\Email.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="L5.Code.InOut">
+    <Position X="1.5" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACACAAAAAUAAAAAAAAAAAAAAAAIAAABABAAA=</HashCode>
+      <FileName>Code\InOut.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="L5.Code.Server">
+    <Position X="4.5" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAUAAAAAAQAAAoAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Code\Server.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="L5.Code.TaskUtils">
+    <Position X="1.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IBgAAAAAACAAAAAAAAAAAAAAQAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Code\TaskUtils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

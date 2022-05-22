@@ -6,9 +6,20 @@ using System.Web;
 
 namespace L5.Code
 {
+    /// <summary>
+    /// Class for calculations of server data
+    /// </summary>
     public class TaskUtils
     {
-        public static void AssignDuration(List<Server> Emails, List<Server> ServerSpecifications, Table errorTable)
+        /// <summary>
+        /// Assigns durations that it took to send email based on server
+        /// speed
+        /// </summary>
+        /// <param name="Emails"></param>
+        /// <param name="ServerSpecifications"></param>
+        /// <param name="errorTable"></param>
+        public static void AssignDuration(List<Server> Emails, List<Server> 
+                                        ServerSpecifications, Table errorTable)
         {
             List<string> errors = new List<string>();
 
@@ -40,25 +51,33 @@ namespace L5.Code
                 InOut.FillTable(errors, errorTable);
             }
         }
-
+        /// <summary>
+        /// Durations of email transmission in seconds
+        /// </summary>
+        /// <param name="TransferSpeed">Server interface speed</param>
+        /// <param name="fileSize">email's size</param>
+        /// <returns>duration in seconds</returns>
         public static int TransferDuration(double TransferSpeed, double fileSize)
         {
             return Convert.ToInt32(fileSize / TransferSpeed);
         }
-
+        /// <summary>
+        /// Returns server speed based on it's name
+        /// </summary>
+        /// <param name="Servername">server to search for</param>
+        /// <param name="serversSpecs">all server's information</param>
+        /// <returns>Server's speed in bytes per second</returns>
         public static double GetServerSpeed(string Servername, List<Server> serversSpecs)
         {
-            //try
             {
                 return serversSpecs.FirstOrDefault(s => s.Name == Servername).InterfaceSpeed;
-            }
-            //catch(NullReferenceException )
-            //{
-            //    throw new Exception($"{Servername} serveris nera palaikomas.");
-            //}
-            
+            }            
         }
-
+        /// <summary>
+        /// Finds hours when servers are idle
+        /// </summary>
+        /// <param name="servers">All server's data</param>
+        /// <returns>tuple with string date and hour number</returns>
         public static List<Tuple<string, DateTime, int>> FindIdleHours(List<Server> servers)
         {
             List<Tuple<string, DateTime, int>> set = new List<Tuple<string, DateTime, int>>();
@@ -76,13 +95,25 @@ namespace L5.Code
             }
             return set;
         }
+        /// <summary>
+        /// Returns server's transmission at one hour
+        /// </summary>
+        /// <param name="server">One server object</param>
+        /// <param name="hour">specific hour to count bytes</param>
+        /// <returns>sum of all bytes that server transfered</returns>
         public static double BytesTransferedInHour(Server server, int hour)
         {
             return server.EmailTraffic.Where(s => s.SendTime.Hour == hour)
                                       .Select(m => m.SizeInBytes)
                                       .Sum();
-
         }
+        /// <summary>
+        /// Checks if email transfered between two hours
+        /// </summary>
+        /// <param name="email">all emails of server</param>
+        /// <param name="hour">specific transmission hour</param>
+        /// <returns>True if email happened between two hours and
+        /// vice versa</returns>
         public static bool NextHour(List<Email> email, int hour)
         {
             List<Email> correctHour = email.Where(s => s.SendTime.Hour == hour).ToList();
