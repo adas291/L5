@@ -1,4 +1,4 @@
-﻿2032; 12; 25; Didysis
+﻿2032; 12; 25; zidysis
 16; 54; Domas.stripeikis@gmail.com; gavejas1@ktu.edu; 5
 20; 22; siuntejas2@ktu.lt; gavejas2@ktu.edu; 11
 03; 54; siuntejas3@ktu.lt; gavejas3@ktu.edu; 54

@@ -68,47 +68,65 @@ namespace L5.Code
             }
 
         }
-        public static List<Server> ReadEmailData(DirectoryInfo directory, List<Server> servers, string specFile)
+        public static List<Server> ReadEmailData(DirectoryInfo directory, string specFile, List<string> errors, List<Server> ServerSpecs)
         {
             List<Server> serverList = new List<Server>();
             foreach (var file in directory.GetFiles())
             {
-                if (file.Name != specFile)
+                if (file.Name != specFile )
                 {
-                    using (StreamReader sr = new StreamReader(file.FullName))
+                    try
                     {
-
-                        string[] firstLine = sr.ReadLine().Split(new string[] { "; " }, StringSplitOptions.RemoveEmptyEntries);
-                        int year = Convert.ToInt32(firstLine[0]);
-                        int month = Convert.ToInt32(firstLine[1]);
-                        int day = Convert.ToInt32(firstLine[2]);
-                        string serverName = firstLine[3];
-                        DateTime date = new DateTime(year, month, day);
-                        string line;
-
-                        List<Email> emails = new List<Email>();
-                        while ((line = sr.ReadLine()) != null)
+                        using (StreamReader sr = new StreamReader(file.FullName))
                         {
-                            string[] parts = line.Split(new string[] { "; " }, StringSplitOptions.RemoveEmptyEntries);
-                            int hour = Convert.ToInt32(parts[0]);
-                            int min = Convert.ToInt32(parts[1]);
-                            string senderAddress = parts[2];
-                            string receiverAddress = parts[3];
-                            int emailSize = Convert.ToInt32(parts[4]);
-                            DateTime emailDate = new DateTime(year, month, day, hour, min, 1);
+
+                            string[] firstLine = sr.ReadLine().Split(new string[] { "; " }, StringSplitOptions.RemoveEmptyEntries);
+                            int year = Convert.ToInt32(firstLine[0]);
+                            int month = Convert.ToInt32(firstLine[1]);
+                            int day = Convert.ToInt32(firstLine[2]);
+                            string serverName = firstLine[3];
+
+                            var temwtp = ServerSpecs.Find(s => s.Name == serverName);
+
+                            if(temwtp == null)
+                            {
+                                errors.Add($"{serverName} server is not supported by given files.");
+                                continue;
+                            }
 
 
-                            Email email = new Email(senderAddress, receiverAddress, emailSize, serverName, emailDate);
-                            emails.Add(email);
+                                DateTime date = new DateTime(year, month, day);
+                            string line;
+
+                            List<Email> emails = new List<Email>();
+                            while ((line = sr.ReadLine()) != null)
+                            {
+                                string[] parts = line.Split(new string[] { "; " }, StringSplitOptions.RemoveEmptyEntries);
+                                int hour = Convert.ToInt32(parts[0]);
+                                int min = Convert.ToInt32(parts[1]);
+                                string senderAddress = parts[2];
+                                string receiverAddress = parts[3];
+                                double emailSize = Convert.ToDouble(parts[4]);
+                                DateTime emailDate = new DateTime(year, month, day, hour, min, 1);
+
+
+                                Email email = new Email(senderAddress, receiverAddress, emailSize, serverName, emailDate);
+                                emails.Add(email);
+                            }
+                            Server temp = new Server(serverName, emails, date);
+                            serverList.Add(temp);
                         }
-
-                        Server temp = new Server(serverName, emails, date);
-                        serverList.Add(temp);
+                    }
+                    catch(Exception ex)
+                    {
+                        errors.Add($"{file.Name} format is corrupted please fix and try again.");
+                        continue;
                     }
                 }
             }
-            return serverList;
+            return serverList;           
         }
+
         public static void FillTable(List<string> errors, Table table)
         {
             foreach (var item in errors)
@@ -121,6 +139,8 @@ namespace L5.Code
                 table.Rows.Add(row);
             }
         }
+       
+
         public static void DisplayServerData(List<Server> servers, System.Web.UI.HtmlControls.HtmlForm forma1)
         {
             if (servers.Count > 0)
@@ -137,18 +157,19 @@ namespace L5.Code
 
                     TableCell sender = new TableCell();
                     TableCell receiver = new TableCell();
-                    TableCell targetServer = new TableCell();
+                    TableCell fileSize = new TableCell();
                     TableCell Date = new TableCell();
 
                     sender.Text = "Siuntėjas";
                     receiver.Text = "Gavėjas";
-                    targetServer.Text = "Serveris į kurį siunčiama";
+                    fileSize.Text = "Laiško dydis";
+
                     Date.Text = "Išsiuntimo laikas";
 
                     TableRow row = new TableRow();
                     row.Cells.Add(sender);
                     row.Cells.Add(receiver);
-                    row.Cells.Add(targetServer);
+                    row.Cells.Add(fileSize);
                     row.Cells.Add(Date);
 
                     row.Attributes.Add("class", "HeaderRow");
@@ -161,20 +182,19 @@ namespace L5.Code
                     {
                         sender = new TableCell();
                         receiver = new TableCell();
-                        targetServer = new TableCell();
                         Date = new TableCell();
+                        fileSize = new TableCell();
 
                         sender.Text = email.SenderAddress;
                         receiver.Text = email.ReceiverAddress;
-                        targetServer.Text = email.TargeServer;
-                        Date.Text = email.SendTime.ToString("H:m");
+                        fileSize.Text = email.SizeInBytes.ToString();
+                        Date.Text = email.SendTime.ToString("HH:m 'h' ");
 
                         row = new TableRow();
                         row.Cells.Add(sender);
                         row.Cells.Add(receiver);
-                        row.Cells.Add(targetServer);
+                        row.Cells.Add(fileSize);
                         row.Cells.Add(Date);
-
                         table.Rows.Add(row);
 
                     }

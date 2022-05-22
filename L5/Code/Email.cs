@@ -9,12 +9,12 @@ namespace L5.Code
     {
         public string SenderAddress { get; set; }
         public string ReceiverAddress { get; set; }
-        public int SizeInBytes { get; set; }
+        public double SizeInBytes { get; set; }
         public string TargeServer { get; set; }
         public DateTime SendTime { get; set; }
         public int TransferDuration { get; set; }
 
-        public Email(string senderAddress, string receiverAddress, int sizeInBytes, string targeServer, DateTime sendTime)
+        public Email(string senderAddress, string receiverAddress, double sizeInBytes, string targeServer, DateTime sendTime)
         {
             SenderAddress = senderAddress;
             ReceiverAddress = receiverAddress;

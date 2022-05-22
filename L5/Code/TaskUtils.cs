@@ -8,40 +8,54 @@ namespace L5.Code
 {
     public class TaskUtils
     {
-        public static void AssignDuration(List<Server> Emails, List<Server> servers)
+        public static void AssignDuration(List<Server> Emails, List<Server> ServerSpecifications, Table errorTable)
         {
+            List<string> errors = new List<string>();
+
             foreach (var server in Emails)
             {
-                foreach (var email in server.EmailTraffic)
+                try
                 {
-                    double speed = GetServerSpeed(server.Name, servers);
-                    if(speed != 0)
+                    foreach (var email in server.EmailTraffic)
                     {
-                        email.TransferDuration = TransferDuration(speed, email.SizeInBytes);
-                    }
-                    else
-                    {
-                        email.TransferDuration = -1;
+                        double speed = GetServerSpeed(server.Name, ServerSpecifications);
+                        if (speed != 0)
+                        {
+                            email.TransferDuration = TransferDuration(speed, email.SizeInBytes);
+                        }
+                        else
+                        {
+                            email.TransferDuration = -1;
+                        }
                     }
                 }
+                catch (Exception ex)
+                {
+                    errors.Add(ex.Message);
+                    continue;
+                }
+            }
+            if (errors.Count > 0)
+            {
+                InOut.FillTable(errors, errorTable);
             }
         }
 
-        public static int TransferDuration(double TransferSpeed, int fileSize)
+        public static int TransferDuration(double TransferSpeed, double fileSize)
         {
             return Convert.ToInt32(fileSize / TransferSpeed);
         }
 
         public static double GetServerSpeed(string Servername, List<Server> serversSpecs)
         {
-            try
+            //try
             {
                 return serversSpecs.FirstOrDefault(s => s.Name == Servername).InterfaceSpeed;
             }
-            catch(NullReferenceException )
-            {
-                throw new Exception("Nera tokio serverio sarase");
-            }
+            //catch(NullReferenceException )
+            //{
+            //    throw new Exception($"{Servername} serveris nera palaikomas.");
+            //}
             
         }
 
@@ -53,7 +67,7 @@ namespace L5.Code
             {
                 for (int i = 0; i < 24; i++)
                 {
-                    if (BytesTransferedInHour(item, i) == 0)
+                    if (BytesTransferedInHour(item, i) == 0 && !NextHour(item.EmailTraffic, i-1))
                     {
                         Tuple<string, DateTime, int> temp = Tuple.Create(item.Name, item.TransferDate, i);
                         set.Add(temp);
@@ -62,13 +76,26 @@ namespace L5.Code
             }
             return set;
         }
-        public static int BytesTransferedInHour(Server server, int hour)
+        public static double BytesTransferedInHour(Server server, int hour)
         {
-            //int totalQuota = 0;
+            return server.EmailTraffic.Where(s => s.SendTime.Hour == hour)
+                                      .Select(m => m.SizeInBytes)
+                                      .Sum();
 
-            //Implement counting from previous hours if not transfered;
-            return server.EmailTraffic.Where(s => s.SendTime.Hour == hour).Select(m => m.SizeInBytes).Sum();
-            
+        }
+        public static bool NextHour(List<Email> email, int hour)
+        {
+            List<Email> correctHour = email.Where(s => s.SendTime.Hour == hour).ToList();
+
+            foreach (var item in correctHour)
+            {
+                int tillHour = 60 - item.SendTime.Minute;
+                if (tillHour < item.TransferDuration / 60)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

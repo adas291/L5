@@ -15,10 +15,12 @@
             <asp:FileUpload ID="FileUpload1" runat="server" AllowMultiple="True" />
             <br />
             <br />
-            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Nuskaityti duomenis" />
+            <asp:Button CssClass="ButtonStyle" ID="Button1" runat="server" OnClick="Button1_Click" Text="Nuskaityti duomenis" />
             <br />
             <br />
-            <asp:Button ID="Button2" runat="server" Text="Button" Visible="False" />
+            <asp:Button CssClass="ButtonStyle" ID="Button2" runat="server" Text="Išvesti duomenis į rezultatų failą." Visible="False" OnClick="Button2_Click" />
+            <br />
+            <asp:Label ID="Label3" runat="server" ForeColor="Green" Text="Label" Visible="False"></asp:Label>
         </div>
         <asp:Table class = "ErrorTable" ID="Table1" runat="server" BorderStyle="None">
         </asp:Table>
